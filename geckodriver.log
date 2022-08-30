@@ -1,0 +1,18 @@
+1661742675101	geckodriver	INFO	Listening on 127.0.0.1:58237
+1661742675468	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "58238" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/8q/qtly26jn4vdf_9249tk_8y8r0000gn/T/rust_mozprofileWysGJD"
+2022-08-29 04:11:16.251 plugin-container[19320:2339095] nil host used in call to allowsSpecificHTTPSCertificateForHost
+2022-08-29 04:11:16.251 plugin-container[19320:2339095] nil host used in call to allowsAnyHTTPSCertificateForHost:
+1661742676266	Marionette	INFO	Marionette enabled
+2022-08-29 04:11:16.279 plugin-container[19320:2339095] nil host used in call to allowsSpecificHTTPSCertificateForHost
+2022-08-29 04:11:16.279 plugin-container[19320:2339095] nil host used in call to allowsAnyHTTPSCertificateForHost:
+2022-08-29 04:11:16.280 plugin-container[19320:2339100] nil host used in call to allowsSpecificHTTPSCertificateForHost
+2022-08-29 04:11:16.280 plugin-container[19320:2339100] nil host used in call to allowsAnyHTTPSCertificateForHost:
+1661742676301	Marionette	INFO	Listening on port 58251
+WebDriver BiDi listening on ws://localhost:58238
+Read port: 58251
+1661742676669	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/8q/qtly26jn4vdf_9249tk_8y8r0000gn/T/rust_mozprofileWysGJD/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:58238/devtools/browser/5cceae26-c786-48c2-b93d-8535f350f3dc
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://opensource-demo.orangehrmlive.com."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://opensource-demo.orangehrmlive.com."
+1661742681661	Marionette	INFO	Stopped listening on port 58251
