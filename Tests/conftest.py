@@ -8,14 +8,14 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from time import sleep
 
 
-@pytest.fixture(params=["chrome"], scope='class')
+@pytest.fixture(params=["chrome,firefox"], scope='class')
 def init_driver(request):
     if request.param == "chrome":
         print("INFO: initiating chrome driver")
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument("--incognito")
         if platform.system() == "Linux":
-            sleep(8)
+            sleep(50)
             web_driver = webdriver.Remote('http://selenium:4444/wd/hub',
                                           desired_capabilities=DesiredCapabilities.CHROME)
 
@@ -23,8 +23,13 @@ def init_driver(request):
             service = Service(TestData.CHROME_EXECUTABLE_PATH_FOR_MAC)
             web_driver = webdriver.Chrome(service=service)
     if request.param == "firefox":
-        service = Service(TestData.FIREFOX_EXECUTABLE_PATH_FOR_MAC)
-        web_driver = webdriver.Firefox(service=service)
+        if platform.system() == "Linux":
+            sleep(50)
+            web_driver = webdriver.Remote('http://selenium:4444/wd/hub',
+                                          desired_capabilities=DesiredCapabilities.FIREFOX)
+        else:
+            service = Service(TestData.FIREFOX_EXECUTABLE_PATH_FOR_MAC)
+            web_driver = webdriver.Firefox(service=service)
     request.cls.driver = web_driver
     web_driver.implicitly_wait(10)
     web_driver.maximize_window()
