@@ -11,7 +11,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh "docker run orangehrm-demo-app"
+                sh "docker run orangehrm-demo-app:$BUILD_NUMBER"
             }
         }
         stage('Deploy') {
