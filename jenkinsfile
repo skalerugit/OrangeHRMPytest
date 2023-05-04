@@ -1,11 +1,18 @@
 pipeline {
     agent any
+    
+    environment {
+    DOCKER_REGISTRY = "docker.io"
+    DOCKERHUB_USERNAME = credentials('dockerhub-username')
+    DOCKERHUB_PASSWORD_FILE = credentials('dockerhub-password-file')
+    DOCKER_IMAGE_NAME = "orangehrm-demo-app"
+    DOCKER_IMAGE_TAG = $BUILD_NUMBER
+    }
 
     stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
-                sh "docker build -t orangehrm-demo-app:$BUILD_NUMBER ."
+        stage('Build Docker image') {
+      steps {
+        sh 'docker build -t "${DOCKER_REGISTRY}/${DOCKERHUB_USERNAME}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}" .'
             }
         }
         stage('Test') {
@@ -16,13 +23,12 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
-                echo 'deploying the application...'
-                script.withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'SECRET', usernameVariable: 'USER')]) {
-                    script.sh "echo $SECRET | docker login -u $USER --password-stdin"
-                    sh "docker push skalerudocker/orangehrm-demo-app:$BUILD_NUMBER"
+            withCredentials([file(credentialsId: "${DOCKERHUB_PASSWORD_FILE}", variable: 'DOCKERHUB_PASSWORD')]) {
+                    sh "docker login -u ${DOCKERHUB_USERNAME} -p $(cat ${DOCKERHUB_PASSWORD}) ${DOCKER_REGISTRY}"
+                    sh "docker push ${DOCKER_REGISTRY}/${DOCKERHUB_USERNAME}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}"
             }
+            }
+            
         }
     }
-}
 }
