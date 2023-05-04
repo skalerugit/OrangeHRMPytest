@@ -8,7 +8,7 @@ class TestData:
 
     LOGIN_PAGE_TITLE = "OrangeHRM"
     INVALID_LOGIN_TEXT = "Invalid credentials"
-    COPYRIGHT_YEAR = "© 2005 - 2022 OrangeHRM, Inc. All rights reserved."
+    COPYRIGHT_YEAR = "© 2005 - 2023 OrangeHRM, Inc. All rights reserved."
     FORM_HEADER = "Login"
-    ACTIVE_MENU_ITEM = "PIM"
+    ACTIVE_MENU_ITEM = "Dashboard"
 

@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+                sh "docker build -t OrangeHRM-demo-app:$BUILD_NUMBER ."
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+                sh "docker run OrangeHRM-demo-app"
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
+}

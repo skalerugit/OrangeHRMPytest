@@ -19,7 +19,7 @@ class HamburgerMenuPage(BasePage):
         self.driver.get(TestData.APP_URL)
 
     def verify_inactive_list_menu_items(self):
-        expected_list = ["Admin", "Leave", "Time", "Recruitment", "My Info", "Performance", "Dashboard",
+        expected_list = ["Admin", "Leave", "Time", "Recruitment", "My Info", "Performance", "PIM",
                          "Directory", "Maintenance", "Buzz"]
         actual_list = self.get_elements_text(self.INACTIVE_MENU_ITEMS)
         assert expected_list == actual_list
