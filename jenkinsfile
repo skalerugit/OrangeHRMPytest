@@ -24,7 +24,7 @@ pipeline {
         stage('Deploy') {
             steps {
             withCredentials([file(credentialsId: "${DOCKERHUB_PASSWORD_FILE}", variable: 'DOCKERHUB_PASSWORD')]) {
-                    sh "docker login -u ${DOCKERHUB_USERNAME} -p $(cat ${DOCKERHUB_PASSWORD}) ${DOCKER_REGISTRY}"
+                    sh "docker login -u \${DOCKERHUB_USERNAME} -p $(cat ${DOCKERHUB_PASSWORD}) ${DOCKER_REGISTRY}"
                     sh "docker push ${DOCKER_REGISTRY}/${DOCKERHUB_USERNAME}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}"
             }
             }
