@@ -30,7 +30,7 @@ RUN apt install -y  python3-venv
 RUN python3 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 RUN pip3 install --upgrade pip
-RUN pip3 install -r requirements.txt
+RUN pip3 install -r Requirements.txt
 # RUN sed -i 's/"$@"/"$@" --no-sandbox/g' /usr/bin/google-chrome
 
 CMD ["pytest"]
