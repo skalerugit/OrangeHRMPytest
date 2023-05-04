@@ -5,13 +5,13 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh "docker build -t OrangeHRM-demo-app:$BUILD_NUMBER ."
+                sh "docker build -t orangehrm-demo-app:$BUILD_NUMBER ."
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh "docker run OrangeHRM-demo-app"
+                sh "docker run orangehrm-demo-app"
             }
         }
         stage('Deploy') {
