@@ -12,7 +12,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh "docker run orangehrm-demo-app:$BUILD_NUMBER"
+                sh "docker run skalerudocker/orangehrm-demo-app:$BUILD_NUMBER"
             }
         }
         stage('Push artifact to Dockerhub') {
