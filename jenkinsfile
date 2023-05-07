@@ -9,7 +9,7 @@ pipeline {
                 sh "docker build -t skalerudocker/orangehrm-demo-app:$BUILD_NUMBER ."
             }
         }
-        stage('Test') {
+        stage('Run the Tests in Docker') {
             steps {
                 echo 'Testing..'
                 sh "docker run skalerudocker/orangehrm-demo-app:$BUILD_NUMBER"
