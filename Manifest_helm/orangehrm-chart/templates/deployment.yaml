@@ -19,5 +19,5 @@ spec:
       - name: regsecret
       containers:
       - name: {{ .Values.appName }}
-        image: skalerudocker/orangehrm-demo-app:2
+        image: skalerudocker/orangehrm-demo-app:11
         imagePullPolicy: Always
