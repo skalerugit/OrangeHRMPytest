@@ -24,6 +24,28 @@ pipeline {
                   }
             }
         }
+        stage("checkout mainfest repo") {
+            steps {
+                git credentialsId: 'github-credentials',
+                url: 'https://github.com/skalerugit/OrangeHRMPytest.git',
+                branch: 'master'
+            }
+        }
+        stage("Update k8s manifest Repo") {
+            steps {
+                echo "pushing updated manifest to repository"
+                withCredentials([usernamePassword(credentialsId: 'github-credentials', passwordVariable: 'password', usernameVariable: 'username')]) {
+                    sh "sed -i 's+skalerudocker/orangehrm-demo-app:.*+skalerudocker/orangehrm-demo-app:$BUILD_NUMBER+g' Manifest_helm/orangehrm-chart/templates/deployment.yaml"
+                    sh 'git config --global user.email "srujjhanaadevy@gmail.com"'
+                    sh 'git config --global user.name "skalerugit"'
+                    sh "git add -A"
+                    sh "git commit -m 'Updated image tag | Image Version=$BUILD_NUMBER'"
+                    sh "git remote -v"
+                    sh "git push https://$password@github.com/skalerugit/OrangeHRMPytest.git HEAD:master"
+                }
+            }
+        }
+
         
         
     }

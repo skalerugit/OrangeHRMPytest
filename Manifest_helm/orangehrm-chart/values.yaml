@@ -1,0 +1,3 @@
+appName: orangehrm-demo-app
+namespace: default
+replicas: 2
