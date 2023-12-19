@@ -18,7 +18,8 @@ class Test_LoginPage(BaseTest):
     def test_copyright_info(self):
         self.loginPage = LoginPage(self.driver)
         copyright_text = self.loginPage.get_copyright_information()
-        assert copyright_text == TestData.COPYRIGHT_YEAR
+        if copyright_text != TestData.COPYRIGHT_YEAR:
+            raise AssertionError("Copyright text does not match TestData.COPYRIGHT_YEAR")
 
     def test_form_header(self):
         self.loginPage = LoginPage(self.driver)
